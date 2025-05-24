@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+<div class="wishlist-container">
+    <h1>Вишлист пользователя {{ user.username }}</h1>
+
+
+
+
+    <div class="wishlist">
+        {% for wish in wishes %}
+        <div class="wish-item">
+            <h3>{{ wish.name }}</h3>
+            <p>{{ wish.description }}</p>
+            {% if wish.image %}
+            <img src="{{ wish.image.url }}" alt="{{ wish.name }}" class="wish-image">
+            {% endif %}
+<!--            {% if wish.link %}-->
+<!--            <p><a href="{{ wish.link }}" target="_blank">Ссылка</a></p>-->
+<!--            {% endif %}-->
+
+
+
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+</div>
+</body>
+</html>

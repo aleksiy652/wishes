@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавить желание</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <div class="wishlist-container">
+        <h1>Добавить новое желание</h1>
+        <form method="post" enctype="multipart/form-data" class="wish-form">
+            {% csrf_token %}
+            {{ form }}
+            <button type="submit"  class="add-wish-button">Добавить</button>
+        </form>
+    </div>
+</body>
+</html>

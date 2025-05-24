@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список желаний</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <div class="wishlist-container">
+        <h1>Мой список желаний</h1>
+        <p>Чтобы поделиться вишлистом, скопируйте ссылку ниже: </p>
+        <div class="share-link-container">
+            <!-- Генерация ссылки для общего доступа -->
+            <input type="text" id="share-link" readonly value="http://127.0.0.1:8000/public_wish_list/{{id}}">
+
+        </div>
+
+        <div class="wishlist">
+            <a href="{% url 'add_wish' %}" class="add-wish-button">Добавить новое желание</a>
+            {% for wish in wishes %}
+                <div class="wish-item">
+                    <h3>{{ wish.name }}</h3>
+                    <p>{{ wish.description }}</p>
+<!--                    {% if wish.link %}-->
+<!--                        <p><a href="{{ wish.link }}" target="_blank">Ссылка на товар</a></p>-->
+<!--                    {% endif %}-->
+                    {% if wish.image %}
+                        <img src="{{ wish.image.url }}" alt="{{ wish.name }}" class="wish-image">
+                    {% endif %}
+                <form method="post" action="/delete/">
+                    {% csrf_token %}
+                    <button>УДАЛИТЬ</button>
+                    <input type="hidden"  value="{{wish.id}}" name="id">
+                </form>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+</body>
+</html>

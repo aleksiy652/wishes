@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Подтверждение удаления</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <div class="confirmation-container">
+        <h1>Вы уверены, что хотите удалить это желание?</h1>
+        <p>{{ wish.title }}</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="confirm-button">Удалить</button>
+            <a href="{% url 'wish_list' %}" class="cancel-button">Отмена</a>
+        </form>
+    </div>
+</body>
+</html>
